@@ -44,15 +44,15 @@ Parte 1: Setp Up
 Parte 2: 
 - É testado se apenas 1 único Post aparece corretamente na Home Page.
 - Primeiramente, ele cria um objeto da classe Entry (Post do Blog), com os 3 parâmetros necessários. Os parâmetros de data de publicação sao feitos automaticamente pelo sistema.
-= Em seguida, ele faz o client receber a nova Entry.
+- Em seguida, ele faz o client receber a nova Entry.
 - Em seguida, ele verifica se o que o client recebeu está com 2 parâmetros corretos (title e body). Como o parâmetro user é tratado pelo django automaticamente, não é preciso verificar se o user está correto.
 
 Parte 3: 
 - É testado se 2 Posts aparecem corretamente na Home Page. Como a inserção de Posts segue um processo automatizado, se 2 estiverem corretos, então n estão.
-= Primeiramente, ele cria 2 objetos da Classe Entry.
-= Em seguida, ele faz o client receber as duas novas Entry.
-= Em seguida, ele verifica se o primeiro objeto possui title e body corretos.
-= Em seguida, ele verifica apenas se o title do segundo objeto está correto. Se o primeiro estava com o body correto, então o segundo também estará. Era necessário apenas verificar se o segundo Entry estava presente na Home Page, afinal se a primeira Entry aparece corretamente, então as outras também aparecem, era necessário apenas saber se a próxima Entry estava presente.
+- Primeiramente, ele cria 2 objetos da Classe Entry.
+- Em seguida, ele faz o client receber as duas novas Entry.
+- Em seguida, ele verifica se o primeiro objeto possui title e body corretos.
+- Em seguida, ele verifica apenas se o title do segundo objeto está correto. Se o primeiro estava com o body correto, então o segundo também estará. Era necessário apenas verificar se o segundo Entry estava presente na Home Page, afinal se a primeira Entry aparece corretamente, então as outras também aparecem, era necessário apenas saber se a próxima Entry estava presente.
 
 # Teste 2
 
