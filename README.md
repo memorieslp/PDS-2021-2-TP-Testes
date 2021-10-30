@@ -100,3 +100,46 @@ Parte 3:
 - O cliente recebe a URL.
 - Verifica se o status é código 200, o que significa que o status está ok.
 - Verifica se o Template utilizado para formatar o Comment está sendo utilizado corretamente.
+
+# Teste 3
+```
+class EntryHistoryTagTest(TestCase):
+
+        TEMPLATE = Template("{% load blog_tags %} {% entry_history %}")
+
+        def setUp(self):
+                self.user = get_user_model().objects.create(username='zoidberg')
+
+        def test_entry_shows_up(self):
+                entry = Entry.objects.create(author=self.user, title="My entry title")
+                rendered = self.TEMPLATE.render(Context({}))
+                self.assertIn(entry.title, rendered)
+                
+        def test_many_posts(self):
+                for n in range(1, 6):
+                        Entry.objects.create(author=self.user, title="Post #{0}".format(n))
+                rendered = self.TEMPLATE.render(Context({}))
+                self.assertIn("Post #5", rendered)
+                self.assertNotIn("Post #6", rendered)       
+```
+
+Os testes verificam se o histórico dos Posts do Blog estão corretos. Ou seja, verifica se o histórico mostra a tag de um Post e suas devidas informações (Quando foi criado e todas as edições -> Essas informações são chamadas de Contexto).
+
+Parte 1:
+- Define o formato do Template (Template é uma feature do Django) que será utilizado pelos testes (Ou seja, o Template foi definido com seu Context).
+
+Parte 2:
+- Cria um usuário que será utilizado pelos testes.
+
+Parte 3:
+- Verifica se um único Post aparece com o template corretamente.
+- É criado um objeto da Entry.
+- Cria a renderização do histórico, utilizando o contexto (as informações) como parâmetro.
+- Verifica se a Entry esta com seu Template renderizado corretamente.
+
+Parte 4:
+- Verifica se vários históricos são mostrados corretamente.
+- Cria-se um loop que cria 5 Entries.
+- Em seguida, renderiza o Templete.
+- Em Seguida, verifica se o Post 5 possui seu histórico corretamente. Se o 5 possui, então os anteriores também.
+- Em seguida, verifica se o Post 6 não possui histórico, afinal ele não foi criado pelo teste.
